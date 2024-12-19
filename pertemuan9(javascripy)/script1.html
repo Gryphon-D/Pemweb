@@ -1,0 +1,204 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript</title>
+<script>
+alert("Hello world !");
+document.write("Selamat Belajar JS");
+let today = new Date();
+console.log("Tanggal Sekarang : " + today);
+</script>
+</head>
+<body>
+<div id="id1"></div>
+<script>
+document.getElementById("id1").innerHTML="STT Terpadu NurulFikri";
+</script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let nama = "gryphon"
+        let bil1 = 8
+        let bil2 = 4
+        console.log("nama saya:" + nama)
+        let hasil = bil1*bil2;
+        console.log(bil1 + "x" + bil2 + "=" + hasil)
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>di console.log</h1>
+</body>
+</html> -->
+
+<!-- tugas1 -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function jawab() {
+            let num = document.getElementById("num").value;
+            const pi = 22/7;
+            let cara = pi * num;
+            let area_hasil = document.getElementById("hasil");
+            area_hasil.innerHTML = cara;
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+         masukan jari-jari:
+        <input type="number" id="num" name="jari" value="">
+        <br>
+        <input type="button" value="x" onclick="jawab()">
+        hasil: <span id="hasil"></span>
+    </form>
+</body>
+</html> -->
+
+<!-- tugas2 -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function rupiah() {
+            let num = document.getElementById("num").value;
+            let dollar = 16000;
+            let cara = num * dollar;
+            let area_hasil = document.getElementById("hasil");
+            area_hasil.innerHTML = cara;
+        }
+
+        function dollar() {
+            let nomor = document.getElementById("nomor").value;
+            let cara = nomor / 16000;
+            let area_hasil = document.getElementById("hasil");
+            area_hasil.innerHTML = cara
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">rupiah ke dolar</h1>
+    <form action="">
+         masukan dollar:
+        <input type="number" id="num" name="dollar" value="">
+        <br>
+        <input type="button" value="konversi" onclick="rupiah()">
+        hasil: <span id="hasil">rupiah  </span>
+    </form>
+
+    <form action="">
+        masukan dollar:
+       <input type="number" id="nomor" name="rupiah" value="">
+       <br>
+       <input type="button" value="konversi" onclick="dollar()">
+       hasil: <span id="hasil">dollar  </span>
+   </form>
+</body>
+</html> -->
+
+<!-- tugas3 -->
+<!-- <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Biaya Parkir</title>
+</head>
+<body>
+    <h3>Hitung Biaya Parkir</h3>
+
+    <label for="masuk">Jam Masuk:</label>
+    <input type="time" id="Masuk" placeholder="Contoh: 08:00" oninput="parkir()"><br>
+
+    <label for="keluar">Jam Keluar:</label>
+    <input type="time" id="Keluar" placeholder="Contoh: 10:00" oninput="parkir()"><br>
+
+    <p>Kendaraan Anda parkir selama <span id="lamaparkir">0</span> jam</p>
+    <p>Biaya parkir Anda <span id="bayarparkir">0</span> rupiah</p>
+
+    <script>
+        function parkir() {
+            // Ambil nilai input
+            let Masuk = document.getElementById("Masuk").value;
+            let Keluar = document.getElementById("Keluar").value;
+
+            if (Masuk && Keluar) { // Pastikan kedua input terisi
+                // Konversi waktu menjadi menit
+                let [jamMasuk, menitMasuk] = Masuk.split(':').map(Number);
+                let [jamKeluar, menitKeluar] = Keluar.split(':').map(Number);
+
+                let totalMenitMasuk = jamMasuk * 60 + menitMasuk;
+                let totalMenitKeluar = jamKeluar * 60 + menitKeluar;
+
+                // Hitung durasi parkir dalam menit
+                let durasiMenit;
+                if (totalMenitKeluar >= totalMenitMasuk) {
+                    durasiMenit = totalMenitKeluar - totalMenitMasuk;
+                } else { // Jika melewati tengah malam
+                    durasiMenit = (24 * 60 - totalMenitMasuk) + totalMenitKeluar;
+                }
+
+                // Konversi durasi menjadi jam
+                let lamaparkir = Math.ceil(durasiMenit / 60); // Pembulatan ke atas untuk jam
+
+                // Hitung biaya parkir
+                let bayarparkir;
+                if (lamaparkir <= 2) {
+                    bayarparkir = 3000;
+                } else {
+                    bayarparkir = 3000 + (lamaparkir - 2) * 1000;
+                }
+
+                // Tampilkan hasil
+                document.getElementById("lamaparkir").textContent = lamaparkir;
+                document.getElementById("bayarparkir").textContent = bayarparkir;
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- tugas4 -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <input type="number" id="bil" value="" onchange="jumlah()"><br>
+    <span>+</span><br>
+    <input type="number" id="bil2" value="" onchange="jumlah(   )"><br>
+    <span>=</span><br>
+    <input type="number" id="hasil" value=""><br>
+
+    <script>
+        function jumlah() {
+            let bil = document.getElementById("bil").value;
+            let bil2 = document.getElementById("bil2").value;
+
+            let hasil = parseInt(bil) + parseInt(bil2);
+
+            document.getElementById('hasil').value = hasil;
+        }
+    </script>
+
+
+ </body>
+ </html>

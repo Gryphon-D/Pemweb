@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .error {
+          width: auto;
+          height: 10px;
+            color: red;
+            font-size: 0.9em;
+        }
+        .invalid {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Validasi</h1>
+    <form id="validationForm">
+        <label for="name">Nama Pelanggan:</label>
+        <input type="text" id="name" name="name">
+        <span class="error" id="nameError"></span><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span><br><br>
+
+        <label for="departureTime">Jam Keberangkatan:</label>
+        <input type="text" id="departureTime" name="departureTime" placeholder="HH.MM">
+        <span class="error" id="timeError"></span><br><br>
+
+        <label for="destination">Tujuan Keberangkatan:</label>
+        <input type="text" id="destination" name="destination">
+        <span class="error" id="destinationError"></span><br><br>
+
+        <label for="tickets">Jumlah Tiket:</label>
+        <input type="number" id="tickets" name="tickets">
+        <span class="error" id="ticketsError"></span><br><br>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <h2>Data Form</h2>
+    <div id="formData"></div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const departureTime = document.getElementById('departureTime');
+            const destination = document.getElementById('destination');
+            const tickets = document.getElementById('tickets');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const timeError = document.getElementById('timeError');
+            const destinationError = document.getElementById('destinationError');
+            const ticketsError = document.getElementById('ticketsError');
+
+            // Clear previous errors
+            [name, email, departureTime, destination, tickets].forEach(field => field.classList.remove('invalid'));
+            [nameError, emailError, timeError, destinationError, ticketsError].forEach(error => error.textContent = '');
+
+            // Validate Name
+            if (!name.value || name.value.length > 30) {
+                name.classList.add('invalid');
+                nameError.textContent = "Nama harus diisi dan maksimum 30 karakter.";
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!email.value) {
+                email.classList.add('invalid');
+                emailError.textContent = "Masukkan email yang valid.";
+                isValid = false;
+            }
+
+            // Validate Departure Time
+           
+            if (!departureTime.value) {
+                departureTime.classList.add('invalid');
+                timeError.textContent = "Masukkan jam dengan format HH.MM antara 00.00 - 23.59.";
+                isValid = false;
+            }
+
+            // Validate Destination
+            if (!destination.value) {
+                destination.classList.add('invalid');
+                destinationError.textContent = "Tujuan keberangkatan harus diisi.";
+                isValid = false;
+            }
+
+            // Validate Tickets
+            if (!tickets.value || tickets.value < 1 || tickets.value > 10 || !Number.isInteger(+tickets.value)) {
+                tickets.classList.add('invalid');
+                ticketsError.textContent = "Jumlah tiket harus bilangan bulat antara 1 - 10.";
+                isValid = false;
+            }
+
+            // Display data if valid
+            if (isValid) {
+                const formData = document.getElementById('formData');
+                formData.innerHTML = `
+                    <div style="background-color: lightgreen; padding: 20px; border: 1px solid #3E8E41;">
+                        <p><strong>Nama Pelanggan:</strong> ${name.value}</p>
+                        <p><strong>Email:</strong> ${email.value}</p>
+                        <p><strong>Jam Keberangkatan:</strong> ${departureTime.value}</p>
+                        <p><strong>Tujuan Keberangkatan:</strong> ${destination.value}</p>
+                        <p><strong>Jumlah Tiket:</strong> ${tickets.value}</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
